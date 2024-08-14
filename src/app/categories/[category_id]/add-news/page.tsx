@@ -28,14 +28,14 @@ const AddNewsPage: React.FC = () => {
         if (!likes) newErrors.likes = 'Likes is required';
 
         setErrors(newErrors);
-        return Object.keys(newErrors).length === 0; // Return true if no errors
+        return Object.keys(newErrors).length === 0;
     };
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
         if (!validateForm()) {
-            return; // Якщо є помилки, зупиняємо відправку форми
+            return;
         }
 
         setLoading(true);

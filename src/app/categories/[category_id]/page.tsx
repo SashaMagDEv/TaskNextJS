@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { getCategoryById, getNewsByCategory } from '../../api';
@@ -12,6 +13,12 @@ export const NewsPage: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const [links, setLinks] = useState({
+        first: '',
+        last: '',
+        previous: '',
+        next: ''
+    });
     const params = useParams();
     const router = useRouter();
     const category_id = params.category_id as string;
@@ -20,9 +27,15 @@ export const NewsPage: React.FC = () => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const { data, meta } = await getNewsByCategory(category_id, page);
-                setNews(data);
-                setTotalPages(meta.last_page);
+                const response = await getNewsByCategory(category_id, page);
+                setNews(response.data);
+                setTotalPages(response.meta.total_pages);
+                setLinks({
+                    first: response.meta.link_to_first_page,
+                    last: response.meta.link_to_last_page,
+                    previous: response.meta.link_to_previous_page,
+                    next: response.meta.link_to_next_page
+                });
                 const categoryResponse = await getCategoryById(category_id);
                 setCategory(categoryResponse);
             } catch (error) {
@@ -37,13 +50,11 @@ export const NewsPage: React.FC = () => {
         }
     }, [category_id, page]);
 
-    const handlePageChange = (page: number) => {
-        if (news.length > 10) {
-            router.push(`/categories/${category_id}/news?page=${page}`);
-        } else {
-            router.push(`/categories/${category_id}`);
+    const handlePageChange = (newPage: number) => {
+        if (newPage > 0 && newPage <= totalPages) {
+            setPage(newPage);
+            router.push(`/categories/${category_id}/`);
         }
-        setPage(page);
     };
 
     if (loading) {
@@ -79,9 +90,9 @@ export const NewsPage: React.FC = () => {
             </div>
             {totalPages > 1 && (
                 <div className={styles.pagination}>
-                    <button onClick={() => handlePageChange(page - 1)} disabled={page === 1}>Попередня</button>
+                    <button onClick={() => handlePageChange(page - 1)} disabled={!links.previous}>Попередня</button>
                     <span>Сторінка {page} з {totalPages}</span>
-                    <button onClick={() => handlePageChange(page + 1)} disabled={page === totalPages}>Наступна</button>
+                    <button onClick={() => handlePageChange(page + 1)} disabled={!links.next}>Наступна</button>
                 </div>
             )}
         </div>

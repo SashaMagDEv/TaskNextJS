@@ -5,6 +5,7 @@ export interface News {
     date: string;
     short_description: string;
     likes: number;
+    category_id: string;
 }
 
 export interface Category {

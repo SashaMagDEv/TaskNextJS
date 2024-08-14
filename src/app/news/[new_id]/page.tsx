@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { getNewsById } from '../../api';
+import {deleteNewsById, getNewsById} from '../../api';
 import { News } from '../../../types/types';
 import { RingLoader } from 'react-spinners';
 import styles from './Page.module.css'; // Оновлений шлях до CSS модуля
@@ -31,6 +31,27 @@ const NewsDetailPage: React.FC = () => {
             router.push(`/news/${news.id}/edit`);
         }
     };
+    const handleDelete = async (id: string, category_id: string, router) => {
+        if (!id || !category_id) {
+            console.error('Невірний ID або ID категорії');
+            return;
+        }
+
+        const isConfirmed = window.confirm('Ви впевнені, що хочете видалити цю новину?');
+
+        if (!isConfirmed) {
+            return;
+        }
+
+        try {
+            await deleteNewsById(id);
+            alert('Новину успішно видалено.');
+            router.push(`/categories/${category_id}`);
+        } catch (error) {
+            console.error('Помилка при видаленні новини:', error);
+            alert('Сталася помилка під час видалення новини. Спробуйте ще раз.');
+        }
+    };
 
     if (loading) {
         return (
@@ -57,6 +78,15 @@ const NewsDetailPage: React.FC = () => {
             <p>{news.short_description}</p>
             <button onClick={handleEditClick} className={styles.editButton}>
                 Edit News
+            </button>
+            <button onClick={() => {
+                if (news && news.id && news.category_id) {
+                    handleDelete(news.id.toString(), news.category_id.toString(), router);
+                }
+            }}
+                    className={styles.deleteButton}
+            >
+                Delete News
             </button>
         </div>
     );

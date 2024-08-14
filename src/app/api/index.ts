@@ -8,16 +8,6 @@ export async function fetchCategories() {
     return response.data;
 }
 
-export const fetchNews = async (id: string) => {
-    try {
-        const response = await axios.post(`${API_URL}/news/${id}`);
-        return response.data;
-    } catch (error) {
-        console.error('Error fetching news:', error);
-        return [];
-    }
-};
-
 export async function getCategoryById(category_id: string): Promise<Category> {
     try {
         const response = await axios.get(`${API_URL}/categories/${category_id}`);
@@ -93,4 +83,13 @@ export const createNews = async (category_id: string, news: {
         throw new Error('Failed to create news');
     }
 }
+
+export const deleteNewsById = async (id: string): Promise<void> => {
+    try {
+        await axios.delete(`${API_URL}/news/${id}`);
+    } catch (error) {
+        console.error('Не вдалося видалити новину:', error);
+        throw new Error('Не вдалося видалити новину');
+    }
+};
 
