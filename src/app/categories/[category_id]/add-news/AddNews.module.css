@@ -1,0 +1,55 @@
+/* Стилі для сторінки додавання новин */
+
+.addNewsContainer {
+    padding: 20px;
+}
+
+.header {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+}
+
+.label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input, .textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #000000;
+}
+
+.submitButton {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.submitButton:hover {
+    background-color: #2980b9;
+}
+
+.loaderContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}

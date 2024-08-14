@@ -1,0 +1,28 @@
+.categoryContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.categoryCard {
+    color: black;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    flex: 1 1 calc(33.333% - 40px); /* 3 колонки з відступами */
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.categoryCard:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.02);
+}
+
+.categoryCard:active {
+    background-color: #d0d0d0;
+}
