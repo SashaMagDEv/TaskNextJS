@@ -4,8 +4,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { getCategoryById, getNewsByCategory } from '../../api';
 import { RingLoader } from 'react-spinners';
+import Breadcrumbs from '../../../components/Breadcrumbs';
 import { News, Category } from '../../../types/types';
+
 import styles from './Page.module.css';
+
 
 export const NewsPage: React.FC = () => {
     const [news, setNews] = useState<News[]>([]);
@@ -57,6 +60,7 @@ export const NewsPage: React.FC = () => {
         }
     };
 
+
     if (loading) {
         return (
             <div className={styles.loaderContainer}>
@@ -67,17 +71,19 @@ export const NewsPage: React.FC = () => {
 
     return (
         <div>
+            <Breadcrumbs />
             <h1 className={styles.container}>
                 Новини категорії <span className={styles.highlight}>{category ? category.name : '...'}</span>
             </h1>
-            <button onClick={() => router.push(`/categories/${category_id}/add-news`)} className={styles.createNewsButton}>
+            <button onClick={() => router.push(`/categories/${category_id}/add-news`)}
+                    className={styles.createNewsButton}>
                 Додати новину
             </button>
             <div className={styles.gridContainer}>
                 {news.length > 0 ? (
                     news.map((item: News) => (
                         <div key={item.id} className={styles.newsCard} onClick={() => router.push(`/news/${item.id}`)}>
-                            <img src={item.thumbnail} alt={item.title} className={styles.newsImage} />
+                            <img src={item.thumbnail} alt={item.title} className={styles.newsImage}/>
                             <h2 className={styles.newsTitle}>{item.title}</h2>
                             <p><strong>Date:</strong> {item.date}</p>
                             <p><strong>Likes:</strong> {item.likes}</p>
@@ -85,6 +91,7 @@ export const NewsPage: React.FC = () => {
                         </div>
                     ))
                 ) : (
+
                     <p>Новин для цієї категорії немає.</p>
                 )}
             </div>

@@ -59,3 +59,18 @@
 .submitButton:hover {
     background-color: #2980b9;
 }
+.backButton {
+    background-color: #cccccc;
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.backButton:hover {
+    background-color: #b3b3b3;
+}

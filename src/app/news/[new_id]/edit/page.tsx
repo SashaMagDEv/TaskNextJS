@@ -25,7 +25,6 @@ const Page: React.FC = () => {
         if (new_id) {
             getNewsById(new_id).then(response => {
                 if (isMounted) {
-                    console.log(response);
                     setNews(response);
                     setTitle(response.title);
                     setThumbnail(response.thumbnail);
@@ -59,6 +58,10 @@ const Page: React.FC = () => {
             console.error('Failed to update news:', error);
             alert('Помилка при оновленні новини');
         }
+    };
+
+    const handleGoBack = () => {
+        router.back();
     };
 
     if (loading) {
@@ -133,6 +136,9 @@ const Page: React.FC = () => {
                 </div>
                 <button type="submit" className={styles.submitButton}>
                     Save Changes
+                </button>
+                <button type="button" onClick={handleGoBack} className={styles.backButton}>
+                    Назад
                 </button>
             </form>
         </div>

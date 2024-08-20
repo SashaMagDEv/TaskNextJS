@@ -5,7 +5,8 @@ import { useParams, useRouter } from 'next/navigation';
 import {deleteNewsById, getNewsById} from '../../api';
 import { News } from '../../../types/types';
 import { RingLoader } from 'react-spinners';
-import styles from './Page.module.css'; // Оновлений шлях до CSS модуля
+import styles from './Page.module.css';
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const NewsDetailPage: React.FC = () => {
     const [news, setNews] = useState<News | null>(null);
@@ -66,7 +67,9 @@ const NewsDetailPage: React.FC = () => {
     }
 
     return (
+
         <div className={styles.newsDetailContainer}>
+            <Breadcrumbs />
             <h1 className={styles.newsTitle}>{news.title}</h1>
             <img
                 src={news.thumbnail}

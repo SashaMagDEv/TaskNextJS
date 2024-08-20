@@ -51,6 +51,9 @@ const AddNewsPage: React.FC = () => {
             setLoading(false);
         }
     };
+    const handleGoBack = () => {
+        router.back();
+    }
 
     if (loading) {
         return (
@@ -125,6 +128,9 @@ const AddNewsPage: React.FC = () => {
                 </div>
                 <button type="submit" className={styles.submitButton}>
                     Save News
+                </button>
+                <button type="button" onClick={handleGoBack} className={styles.backButton}>
+                    Назад
                 </button>
             </form>
         </div>
