@@ -18,7 +18,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 background: '#f4f4f4',
                 color: '#000',
             }}>
-                <h1>My News App</h1>
+                <h1>Новий проект</h1>
             </header>
             <main style={{
                 flex: '1',
@@ -36,7 +36,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 background: '#f4f4f4',
                 color: '#000',
             }}>
-                <p>&copy; 2024 My News App</p>
+                <p>&copy; 2024 Новий проект</p>
             </footer>
         </body>
         </html>

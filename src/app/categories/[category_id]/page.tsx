@@ -85,8 +85,8 @@ export const NewsPage: React.FC = () => {
                         <div key={item.id} className={styles.newsCard} onClick={() => router.push(`/news/${item.id}`)}>
                             <img src={item.thumbnail} alt={item.title} className={styles.newsImage}/>
                             <h2 className={styles.newsTitle}>{item.title}</h2>
-                            <p><strong>Date:</strong> {item.date}</p>
-                            <p><strong>Likes:</strong> {item.likes}</p>
+                            <p><strong>Дата:</strong> {item.date}</p>
+                            <p><strong>Вподобайки:</strong> {item.likes}</p>
                             <p>{item.short_description}</p>
                         </div>
                     ))

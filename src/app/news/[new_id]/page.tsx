@@ -68,29 +68,33 @@ const NewsDetailPage: React.FC = () => {
 
     return (
 
-        <div className={styles.newsDetailContainer}>
-            <Breadcrumbs />
-            <h1 className={styles.newsTitle}>{news.title}</h1>
-            <img
-                src={news.thumbnail}
-                alt={news.title}
-                className={styles.newsImage}
-            />
-            <p><strong>Date:</strong> {news.date}</p>
-            <p><strong>Likes:</strong> {news.likes}</p>
-            <p>{news.short_description}</p>
-            <button onClick={handleEditClick} className={styles.editButton}>
-                Edit News
-            </button>
-            <button onClick={() => {
-                if (news && news.id && news.category_id) {
-                    handleDelete(news.id.toString(), news.category_id.toString(), router);
-                }
-            }}
-                    className={styles.deleteButton}
-            >
-                Delete News
-            </button>
+        <div>
+            <Breadcrumbs/>
+            <div className={styles.newsDetailContainer}>
+                <h1 className={styles.newsTitle}>{news.title}</h1>
+                <img
+                    src={news.thumbnail}
+                    alt={news.title}
+                    className={styles.newsImage}
+                />
+                <p><strong>Дата:</strong> {news.date}</p>
+                <p><strong>Вподобайки:</strong> {news.likes}</p>
+                <p>{news.short_description}</p>
+                <div className={styles.buttonPanel}>
+                    <button onClick={handleEditClick} className={styles.editButton}>
+                        Редагувати Новину
+                    </button>
+                    <button onClick={() => {
+                        if (news && news.id && news.category_id) {
+                            handleDelete(news.id.toString(), news.category_id.toString(), router);
+                        }
+                    }}
+                            className={styles.deleteButton}
+                    >
+                        Видалити Новину
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };

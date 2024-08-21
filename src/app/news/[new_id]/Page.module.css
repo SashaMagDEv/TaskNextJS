@@ -19,9 +19,11 @@
 }
 
 .newsImage {
-    width: 100%;
+    width: 300px;
     height: auto;
-    margin-bottom: 20px;
+    object-fit: cover;
+    margin: 20px auto;
+
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -58,4 +60,9 @@
 .deleteButton:hover {
     background-color: white;
     color: #ff3318;
+}
+
+.buttonPanel {
+    display: flex;
+    justify-content: space-between;
 }
