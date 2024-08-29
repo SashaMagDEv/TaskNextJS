@@ -1,6 +1,6 @@
 import React from 'react';
-import { fetchCategories } from './api';
-import CategoryList from './categories/CategoryList';
+import { fetchCategories } from '@/services/categories.service';
+import CategoryList from '../../pages/categories/CategoryList';
 
 const HomePage = async () => {
     const categories = await fetchCategories();

@@ -1,24 +1,22 @@
-/* Page.module.css */
-
-.loaderContainer {
+.loader_container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.newsDetailContainer {
+.news_detail_container {
     padding: 20px;
     margin: 0 auto;
 }
 
-.newsTitle {
+.news_title {
     font-size: 2rem;
     margin-bottom: 20px;
     text-align: center;
 }
 
-.newsImage {
+.news_image {
     width: 300px;
     height: auto;
     object-fit: cover;
@@ -28,7 +26,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.editButton {
+.edit_button {
     margin-top: 20px;
     padding: 10px 20px;
     border: none;
@@ -40,11 +38,11 @@
     transition: background-color 0.3s;
 }
 
-.editButton:hover {
+.edit_button:hover {
     background-color: #2980b9;
 }
 
-.deleteButton {
+.delete_button {
     margin-top: 20px;
     margin-left: 20px;
     padding: 10px 20px;
@@ -57,12 +55,12 @@
     transition: background-color 0.3s;
 }
 
-.deleteButton:hover {
+.delete_button:hover {
     background-color: white;
     color: #ff3318;
 }
 
-.buttonPanel {
+.button_panel {
     display: flex;
     justify-content: space-between;
 }

@@ -1,19 +1,21 @@
 "use client";
 
+import Layout from '@/app/layout';
 import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import {deleteNewsById, getNewsById} from '../../api';
-import { News } from '../../../types/types';
+import {deleteNewsById, getNewsById} from '@/services/news.service';
+import { News } from '@/models/news.model';
 import { RingLoader } from 'react-spinners';
-import styles from './Page.module.css';
 import Breadcrumbs from "@/components/Breadcrumbs";
+
+import './page.css';
 
 const NewsDetailPage: React.FC = () => {
     const [news, setNews] = useState<News | null>(null);
     const [loading, setLoading] = useState(true);
     const params = useParams();
     const router = useRouter();
-    const new_id = params.new_id as string;
+    const new_id = params?.new_id as string;
 
     useEffect(() => {
         if (new_id) {
@@ -56,7 +58,7 @@ const NewsDetailPage: React.FC = () => {
 
     if (loading) {
         return (
-            <div className={styles.loaderContainer}>
+            <div className="loader_container">
                 <RingLoader color="#3498db" />
             </div>
         );
@@ -67,35 +69,37 @@ const NewsDetailPage: React.FC = () => {
     }
 
     return (
-
-        <div>
-            <Breadcrumbs/>
-            <div className={styles.newsDetailContainer}>
-                <h1 className={styles.newsTitle}>{news.title}</h1>
-                <img
-                    src={news.thumbnail}
-                    alt={news.title}
-                    className={styles.newsImage}
-                />
-                <p><strong>Дата:</strong> {news.date}</p>
-                <p><strong>Вподобайки:</strong> {news.likes}</p>
-                <p>{news.short_description}</p>
-                <div className={styles.buttonPanel}>
-                    <button onClick={handleEditClick} className={styles.editButton}>
-                        Редагувати Новину
-                    </button>
-                    <button onClick={() => {
-                        if (news && news.id && news.category_id) {
-                            handleDelete(news.id.toString(), news.category_id.toString(), router);
-                        }
-                    }}
-                            className={styles.deleteButton}
-                    >
-                        Видалити Новину
-                    </button>
+        <Layout>
+            <div>
+                <Breadcrumbs/>
+                <div className="news_detail_container">
+                    <h1 className="news_title">{news.title}</h1>
+                    <img
+                        src={news.thumbnail}
+                        alt={news.title}
+                        className="news_image"
+                    />
+                    <p><strong>Дата:</strong> {news.date}</p>
+                    <p><strong>Вподобайки:</strong> {news.likes}</p>
+                    <p>{news.short_description}</p>
+                    <div className="button_panel">
+                        <button onClick={handleEditClick} className="edit_button">
+                            Редагувати Новину
+                        </button>
+                        <button onClick={() => {
+                            if (news && news.id && news.category_id) {
+                                handleDelete(news.id.toString(), news.category_id.toString(), router);
+                            }
+                        }}
+                                className="delete_button"
+                        >
+                            Видалити Новину
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </Layout>
+
     );
 };
 

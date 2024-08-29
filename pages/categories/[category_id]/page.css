@@ -24,7 +24,7 @@
     background-color: #2980b9;
 }
 
-.gridContainer {
+.grid_сontainer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;

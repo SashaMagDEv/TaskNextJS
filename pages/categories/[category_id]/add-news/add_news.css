@@ -1,6 +1,4 @@
-/* Стилі для сторінки додавання новин */
-
-.addNewsContainer {
+.add_news_container {
     padding: 20px;
 }
 
@@ -13,7 +11,7 @@
     flex-direction: column;
 }
 
-.formGroup {
+.form_group {
     margin-bottom: 15px;
 }
 
@@ -30,7 +28,7 @@
     color: #000000;
 }
 
-.submitButton {
+.submit_button {
     background-color: #3498db;
     color: white;
     border: none;
@@ -38,11 +36,11 @@
     cursor: pointer;
 }
 
-.submitButton:hover {
+.submit_button:hover {
     background-color: #2980b9;
 }
 
-.loaderContainer {
+.loader_container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,7 +51,7 @@
     font-size: 14px;
     margin-top: 5px;
 }
-.backButton {
+.back_button {
     background-color: #cccccc;
     color: #333;
     padding: 10px 20px;
@@ -65,6 +63,6 @@
     transition: background-color 0.3s ease;
 }
 
-.backButton:hover {
+.back_button:hover {
     background-color: #b3b3b3;
 }

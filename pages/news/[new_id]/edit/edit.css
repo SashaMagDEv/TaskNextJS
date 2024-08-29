@@ -1,11 +1,11 @@
-.loaderContainer {
+.loader_container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.editNewsContainer {
+.edit_news_container {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
@@ -27,7 +27,7 @@
     flex-direction: column;
 }
 
-.formGroup {
+.form_group {
     margin-bottom: 15px;
 }
 
@@ -45,7 +45,7 @@
     border: 1px solid #ccc;
 }
 
-.submitButton {
+.submit_button {
     padding: 10px 20px;
     background-color: #3498db;
     color: #fff;
@@ -56,10 +56,10 @@
     transition: background-color 0.2s ease-in-out;
 }
 
-.submitButton:hover {
+.submit_button:hover {
     background-color: #2980b9;
 }
-.backButton {
+.back_button {
     background-color: #cccccc;
     color: #333;
     padding: 10px 20px;
@@ -71,6 +71,6 @@
     transition: background-color 0.3s ease;
 }
 
-.backButton:hover {
+.back_button:hover {
     background-color: #b3b3b3;
 }

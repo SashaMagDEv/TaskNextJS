@@ -7,8 +7,3 @@ export interface News {
     likes: number;
     category_id: string;
 }
-
-export interface Category {
-    id: number;
-    name: string;
-}

@@ -1,28 +1,28 @@
-.categoryContainer {
+.category_container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
 }
 
-.categoryCard {
+.category_card {
     color: black;
     background-color: #f4f4f4;
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 20px;
-    flex: 1 1 calc(33.333% - 40px); /* 3 колонки з відступами */
+    flex: 1 1 calc(33.333% - 40px);
     box-sizing: border-box;
     text-align: center;
     font-size: 16px;
     transition: background-color 0.3s, transform 0.3s;
 }
 
-.categoryCard:hover {
+.category_card:hover {
     background-color: #e0e0e0;
     transform: scale(1.02);
 }
 
-.categoryCard:active {
+.category_card:active {
     background-color: #d0d0d0;
 }
