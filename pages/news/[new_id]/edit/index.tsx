@@ -6,10 +6,12 @@ import { getNewsById, updateNews } from '@/services/news.service';
 import { News } from '@/models/news.model';
 import { RingLoader } from 'react-spinners';
 import Layout from "@/app/layout";
+import { useTranslation } from 'next-i18next';
 
 import './edit.css';
 
 const Index: React.FC = () => {
+    const { t } = useTranslation('common');
     const [news, setNews] = useState<News | null>(null);
     const [title, setTitle] = useState('');
     const [thumbnail, setThumbnail] = useState('');
@@ -58,11 +60,11 @@ const Index: React.FC = () => {
 
         try {
             await updateNews(new_id, updatedNews);
-            alert('Новина успішно оновлена!');
+            alert(t('newsUpdateSuccess')); // Використайте ваш ключ для успішного оновлення
             router.push(`/news/${new_id}`);
         } catch (error) {
             console.error('Failed to update news:', error);
-            alert('Помилка при оновленні новини');
+            alert(t('newsUpdateError')); // Використайте ваш ключ для помилки
         }
     };
 
@@ -79,17 +81,17 @@ const Index: React.FC = () => {
     }
 
     if (!news) {
-        return <p>Новину не знайдено.</p>;
+        return <p>{t('newsNotFound')}</p>; // Використайте ваш ключ для не знайденої новини
     }
 
     return (
         <Layout>
             <div className="edit_news_container">
-                <h1 className="header">Edit News</h1>
+                <h1 className="header">{t('editNews')}</h1> {/* Використайте ваш ключ для редагування новини */}
                 <form onSubmit={handleSubmit} className="form">
                     <div className="formGroup">
                         <label className="label">
-                            Title:
+                            {t('titleName')}:
                             <input
                                 type="text"
                                 value={title}
@@ -100,7 +102,7 @@ const Index: React.FC = () => {
                     </div>
                     <div className="form_group">
                         <label className="label">
-                            Thumbnail URL:
+                            {t('thumbnailURL')}:
                             <input
                                 type="text"
                                 value={thumbnail}
@@ -111,7 +113,7 @@ const Index: React.FC = () => {
                     </div>
                     <div className="form_group">
                         <label className="label">
-                            Date:
+                            {t('date')}:
                             <input
                                 type="date"
                                 value={date}
@@ -122,7 +124,7 @@ const Index: React.FC = () => {
                     </div>
                     <div className="form_group">
                         <label className="label">
-                            Short Description:
+                            {t('shortDescription')}:
                             <textarea
                                 value={short_description}
                                 onChange={e => setShortDescription(e.target.value)}
@@ -132,7 +134,7 @@ const Index: React.FC = () => {
                     </div>
                     <div className="form_group">
                         <label className="label">
-                            Likes:
+                            {t('likes')}:
                             <input
                                 type="number"
                                 value={likes}
@@ -142,10 +144,10 @@ const Index: React.FC = () => {
                         </label>
                     </div>
                     <button type="submit" className="submit_button">
-                        Save Changes
+                        {t('saveChanges')} {/* Використайте ваш ключ для збереження змін */}
                     </button>
                     <button type="button" onClick={handleGoBack} className="back_button">
-                        Назад
+                        {t('goBack')} {/* Використайте ваш ключ для кнопки назад */}
                     </button>
                 </form>
             </div>

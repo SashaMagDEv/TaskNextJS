@@ -30,4 +30,33 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .language-switcher {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+  }
+
+  .language-switcher button {
+    padding: 8px 16px;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+
+  .language-switcher button.active {
+    background-color: #0070f3;
+    color: white;
+    font-weight: bold;
+  }
+
+  .language-switcher button:hover {
+    background-color: #0070f3;
+    color: white;
+  }
+
 }

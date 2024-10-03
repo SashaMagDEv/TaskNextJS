@@ -3,14 +3,16 @@
 import Layout from '@/app/layout';
 import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import {deleteNewsById, getNewsById} from '@/services/news.service';
+import { deleteNewsById, getNewsById } from '@/services/news.service';
 import { News } from '@/models/news.model';
 import { RingLoader } from 'react-spinners';
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { useTranslation } from 'next-i18next';
 
 import './page.css';
 
 const NewsDetailPage: React.FC = () => {
+    const { t } = useTranslation('common');
     const [news, setNews] = useState<News | null>(null);
     const [loading, setLoading] = useState(true);
     const params = useParams();
@@ -34,13 +36,14 @@ const NewsDetailPage: React.FC = () => {
             router.push(`/news/${news.id}/edit`);
         }
     };
+
     const handleDelete = async (id: string, category_id: string, router) => {
         if (!id || !category_id) {
-            console.error('Невірний ID або ID категорії');
+            console.error(t('invalidId'));
             return;
         }
 
-        const isConfirmed = window.confirm('Ви впевнені, що хочете видалити цю новину?');
+        const isConfirmed = window.confirm(t('confirmDelete'));
 
         if (!isConfirmed) {
             return;
@@ -48,11 +51,11 @@ const NewsDetailPage: React.FC = () => {
 
         try {
             await deleteNewsById(id);
-            alert('Новину успішно видалено.');
+            alert(t('deleteSuccess'));
             router.push(`/categories/${category_id}`);
         } catch (error) {
-            console.error('Помилка при видаленні новини:', error);
-            alert('Сталася помилка під час видалення новини. Спробуйте ще раз.');
+            console.error('Error deleting news:', error);
+            alert(t('deleteError'));
         }
     };
 
@@ -65,13 +68,13 @@ const NewsDetailPage: React.FC = () => {
     }
 
     if (!news) {
-        return <p>Новину не знайдено.</p>;
+        return <p>{t('newsNotFound')}</p>;
     }
 
     return (
         <Layout>
             <div>
-                <Breadcrumbs/>
+                <Breadcrumbs />
                 <div className="news_detail_container">
                     <h1 className="news_title">{news.title}</h1>
                     <img
@@ -79,12 +82,12 @@ const NewsDetailPage: React.FC = () => {
                         alt={news.title}
                         className="news_image"
                     />
-                    <p><strong>Дата:</strong> {news.date}</p>
-                    <p><strong>Вподобайки:</strong> {news.likes}</p>
+                    <p><strong>{t('date')}:</strong> {news.date}</p>
+                    <p><strong>{t('likes')}:</strong> {news.likes}</p>
                     <p>{news.short_description}</p>
                     <div className="button_panel">
                         <button onClick={handleEditClick} className="edit_button">
-                            Редагувати Новину
+                            {t('editNews')}
                         </button>
                         <button onClick={() => {
                             if (news && news.id && news.category_id) {
@@ -93,13 +96,12 @@ const NewsDetailPage: React.FC = () => {
                         }}
                                 className="delete_button"
                         >
-                            Видалити Новину
+                            {t('deleteNews')}
                         </button>
                     </div>
                 </div>
             </div>
         </Layout>
-
     );
 };
 

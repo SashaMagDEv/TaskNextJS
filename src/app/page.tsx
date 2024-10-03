@@ -7,7 +7,6 @@ const HomePage = async () => {
 
     return (
         <main>
-            <h1 style={{textAlign: "center"}}>Категорії</h1>
             <CategoryList categories={categories} />
         </main>
     );

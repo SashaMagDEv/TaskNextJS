@@ -1,14 +1,16 @@
-// "use client";
+"use client";
 
 import React, { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { createNews } from '@/services/news.service';
 import { RingLoader } from 'react-spinners';
 import Layout from "@/app/layout";
+import { useTranslation } from 'next-i18next';
 
 import './add_news.css';
 
 const AddNewsPage: React.FC = () => {
+    const { t } = useTranslation('common');
     const [title, setTitle] = useState('');
     const [thumbnail, setThumbnail] = useState('');
     const [date, setDate] = useState('');
@@ -45,14 +47,15 @@ const AddNewsPage: React.FC = () => {
 
         try {
             const response = await createNews(category_id, News);
-            alert('Новина успішно додана!');
+            alert(t('success'));
             router.push(`/categories/${category_id}/`);
         } catch (error) {
-            alert('Помилка при додаванні новини');
+            alert(t('error'));
         } finally {
             setLoading(false);
         }
     };
+
     const handleGoBack = () => {
         router.back();
     }
@@ -68,11 +71,11 @@ const AddNewsPage: React.FC = () => {
     return (
         <Layout>
             <div className="add_news_container">
-                <h1 className="header">Додати новину</h1>
+                <h1 className="header">{t('title')}</h1>
                 <form onSubmit={handleSubmit} className="form">
                     <div className="form_group">
                         <label className="label">
-                            Title:
+                            {t('titleName')}:
                             <input
                                 type="text"
                                 value={title}
@@ -84,7 +87,7 @@ const AddNewsPage: React.FC = () => {
                     </div>
                     <div className="form_group">
                         <label className="label">
-                            Thumbnail URL:
+                            {t('thumbnail')}:
                             <input
                                 type="text"
                                 value={thumbnail}
@@ -96,7 +99,7 @@ const AddNewsPage: React.FC = () => {
                     </div>
                     <div className="form_group">
                         <label className="label">
-                            Date:
+                            {t('date')}:
                             <input
                                 type="date"
                                 value={date}
@@ -108,7 +111,7 @@ const AddNewsPage: React.FC = () => {
                     </div>
                     <div className="form_group">
                         <label className="label">
-                            Short Description:
+                            {t('shortDescription')}:
                             <textarea
                                 value={short_description}
                                 onChange={e => setShortDescription(e.target.value)}
@@ -119,7 +122,7 @@ const AddNewsPage: React.FC = () => {
                     </div>
                     <div className="form_group">
                         <label className="label">
-                            Likes:
+                            {t('likes')}:
                             <input
                                 type="number"
                                 value={likes}
@@ -130,10 +133,10 @@ const AddNewsPage: React.FC = () => {
                         </label>
                     </div>
                     <button type="submit" className="submit_button">
-                        Save News
+                        {t('submit')}
                     </button>
                     <button type="button" onClick={handleGoBack} className="back_button">
-                        Назад
+                        {t('back')}
                     </button>
                 </form>
             </div>

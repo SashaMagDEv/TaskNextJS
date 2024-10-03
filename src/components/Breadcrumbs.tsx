@@ -3,8 +3,10 @@ import { usePathname, useParams } from 'next/navigation';
 import Link from 'next/link';
 import { getCategoryById } from '@/services/categories.service';
 import { getNewsById } from '@/services/news.service';
+import { useTranslation } from 'next-i18next';
 
 const Breadcrumbs: React.FC = () => {
+    const { t } = useTranslation('common');
     const pathname = usePathname();
     const params = useParams();
     const [categoryName, setCategoryName] = useState<string | null>(null);
@@ -50,7 +52,7 @@ const Breadcrumbs: React.FC = () => {
         <nav aria-label="breadcrumb">
             <ol style={{ display: 'flex' }}>
                 <li>
-                    <Link href="/">Категорії</Link> /
+                    <Link href="/">{t('categories')}</Link> /
                 </li>
                 {categoryName && categoryId ? (
                     <li>
@@ -60,7 +62,7 @@ const Breadcrumbs: React.FC = () => {
                     </li>
                 ) : (
                     <li>
-                        <span>Завантаження...</span>
+                        <span>{t('loading')}</span>
                     </li>
                 )}
                 {newsTitle && (
