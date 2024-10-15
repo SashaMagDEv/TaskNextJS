@@ -1,4 +1,4 @@
-import { NextPageContext } from 'next';
+
 
 function Error({ statusCode }) {
     return (

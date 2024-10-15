@@ -60,11 +60,11 @@ const Index: React.FC = () => {
 
         try {
             await updateNews(new_id, updatedNews);
-            alert(t('newsUpdateSuccess')); // Використайте ваш ключ для успішного оновлення
+            alert(t('newsUpdateSuccess'));
             router.push(`/news/${new_id}`);
         } catch (error) {
             console.error('Failed to update news:', error);
-            alert(t('newsUpdateError')); // Використайте ваш ключ для помилки
+            alert(t('newsUpdateError'));
         }
     };
 
@@ -81,13 +81,13 @@ const Index: React.FC = () => {
     }
 
     if (!news) {
-        return <p>{t('newsNotFound')}</p>; // Використайте ваш ключ для не знайденої новини
+        return <p>{t('newsNotFound')}</p>;
     }
 
     return (
         <Layout>
             <div className="edit_news_container">
-                <h1 className="header">{t('editNews')}</h1> {/* Використайте ваш ключ для редагування новини */}
+                <h1 className="header">{t('editNews')}</h1>
                 <form onSubmit={handleSubmit} className="form">
                     <div className="formGroup">
                         <label className="label">
@@ -144,10 +144,10 @@ const Index: React.FC = () => {
                         </label>
                     </div>
                     <button type="submit" className="submit_button">
-                        {t('saveChanges')} {/* Використайте ваш ключ для збереження змін */}
+                        {t('saveChanges')}
                     </button>
                     <button type="button" onClick={handleGoBack} className="back_button">
-                        {t('goBack')} {/* Використайте ваш ключ для кнопки назад */}
+                        {t('goBack')}
                     </button>
                 </form>
             </div>

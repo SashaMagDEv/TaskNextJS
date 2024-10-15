@@ -10,11 +10,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
     const changeLanguage = (language: string) => {
         i18n.changeLanguage(language);
-        localStorage.setItem('language', language); // Зберегти вибрану мову
+        localStorage.setItem('language', language);
     };
 
     useEffect(() => {
-        // Перевірити, чи є збережена мова в localStorage
         const savedLanguage = localStorage.getItem('language');
         if (savedLanguage) {
             i18n.changeLanguage(savedLanguage);

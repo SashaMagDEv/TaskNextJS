@@ -1,5 +1,5 @@
 import { appWithTranslation } from 'next-i18next';
-import '../i18n'; // Важливо переконатися, що налаштування i18n підключені
+import '../i18n';
 
 const MyApp = ({ Component, pageProps }) => {
     return <Component {...pageProps} />;
